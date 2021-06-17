@@ -1,6 +1,13 @@
 # Battleship
 An implementation of the class Milton Bradley Battleship board game.
 
+# Ships
+* Carrier: five (5) holes
+* Battleship: four (4) holes
+* Cruiser: three (3) holes
+* Submarine: three (3) holes
+* Destroyer: two (2) holes
+
 # Prepare for Battle
 Secretly place your fleet of five ships on your ocean grid.  Your opponent does the same.
 
@@ -10,7 +17,7 @@ Rules for placing ships:
 * Do not change the position of any ship once the game has begun.
 
 # How to Play
-Decide who will go first.  You and your opponent will alternate turns, calling out one shot per turn to try and
+Decide who will go first.  You and your opponent will alternate turns, calling out one shot per turn to try to
 hit each other's ships.
 
 ## Call Your Shot!
