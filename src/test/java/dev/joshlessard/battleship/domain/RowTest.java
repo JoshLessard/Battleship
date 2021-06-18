@@ -31,11 +31,33 @@ public class RowTest {
     }
 
     @Test
-    public void rowNameAssumedToBeUppercase() {
+    public void rowNameForcedToBeUppercase() {
         for ( char rowName = 'a'; rowName <= 'j'; ++rowName ) {
             Row row = Row.of( rowName );
             assertThat( row.name() )
                 .isEqualTo( Character.toUpperCase( rowName ) );
         }
+    }
+
+    @Test
+    public void rowsOtherThanMaxRowHaveNextRow() {
+        Row rowA = Row.of( 'A' );
+        assertThat( rowA.nextRow() )
+            .contains( Row.of( 'B' ) );
+
+        Row rowD = Row.of( 'D' );
+        assertThat( rowD.nextRow() )
+            .contains( Row.of( 'E' ) );
+
+        Row rowI = Row.of( 'I' );
+        assertThat( rowI.nextRow() )
+            .contains( Row.of( 'J' ) );
+    }
+
+    @Test
+    public void maxRowHasNoNextRow() {
+        Row maxRow = Row.of( 'J' );
+        assertThat( maxRow.nextRow() )
+            .isEmpty();
     }
 }

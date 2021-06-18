@@ -1,8 +1,12 @@
 package dev.joshlessard.battleship.domain;
 
 import java.util.Objects;
+import java.util.Optional;
 
 class Row {
+
+    private static final char MINIMUM_ROW_NAME = 'A';
+    private static final char MAXIMUM_ROW_NAME = 'J';
 
     private final char name;
 
@@ -16,7 +20,7 @@ class Row {
 
     private char validate( char name ) {
         name = Character.toUpperCase( name );
-        if ( name < 'A' || name > 'J' ) {
+        if ( name < MINIMUM_ROW_NAME || name > MAXIMUM_ROW_NAME ) {
             throw new IllegalArgumentException();
         }
         return name;
@@ -24,6 +28,15 @@ class Row {
 
     char name() {
         return name;
+    }
+
+    Optional<Row> nextRow() {
+        if ( name == MAXIMUM_ROW_NAME ) {
+            return Optional.empty();
+        } else {
+            char nextRowName = (char) (name + 1);
+            return Optional.of( Row.of( nextRowName ) );
+        }
     }
 
     @Override
