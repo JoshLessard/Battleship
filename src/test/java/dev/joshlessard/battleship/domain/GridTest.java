@@ -48,6 +48,7 @@ public class GridTest {
     }
 
     // todo: more overlap cases
+    // todo: test ships can be beside each other
     // todo: can't add same ship more than once
     // todo: must have all ships exactly once
 }
