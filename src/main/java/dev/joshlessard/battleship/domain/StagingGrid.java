@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-class Grid {
+class StagingGrid {
 
     private final Map<Ship, Set<Coordinate>> shipCoordinates = new EnumMap<>( Ship.class );
     private final Set<Coordinate> occupiedCoordinates = new HashSet<>();
@@ -14,8 +14,7 @@ class Grid {
         ensureShipNotAlreadyOnGrid( ship );
         Set<Coordinate> coordinates = coordinatesToBeOccupied( topLeft, direction, ship.length() );
         ensureNoneAlreadyOccupied( coordinates );
-        shipCoordinates.put( ship, coordinates );
-        occupiedCoordinates.addAll( coordinates );
+        occupyCoordinates( ship, coordinates );
     }
 
     private void ensureShipNotAlreadyOnGrid( Ship ship ) {
@@ -40,5 +39,26 @@ class Grid {
         if ( coordinates.stream().anyMatch( occupiedCoordinates::contains ) ) {
             throw new ShipCollisionException();
         }
+    }
+
+    private void occupyCoordinates( Ship ship, Set<Coordinate> coordinates ) {
+        shipCoordinates.put( ship, coordinates );
+        occupiedCoordinates.addAll( coordinates );
+    }
+
+    void removeShip( Ship ship ) {
+        ensureShipOnGrid( ship );
+        emptyCoordinatesOccupiedBy( ship );
+    }
+
+    private void ensureShipOnGrid( Ship ship ) {
+        if ( ! shipCoordinates.containsKey( ship ) ) {
+            throw new ShipNotOnGridException();
+        }
+    }
+
+    private void emptyCoordinatesOccupiedBy( Ship ship ) {
+        Set<Coordinate> coordinates = shipCoordinates.remove( ship );
+        occupiedCoordinates.removeAll( coordinates );
     }
 }
