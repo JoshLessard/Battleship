@@ -1,4 +1,4 @@
 package dev.joshlessard.battleship.domain;
 
-public class ShipNotOnGridException extends RuntimeException {
+class ShipNotOnGridException extends RuntimeException {
 }
