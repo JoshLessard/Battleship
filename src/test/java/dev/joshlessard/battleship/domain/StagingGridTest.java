@@ -114,5 +114,20 @@ public class StagingGridTest {
         grid.addShip( Ship.DESTROYER, Coordinate.of( Row.of( 'F' ), Column.of( 5 ) ), Direction.DOWN ); // F5/G5
     }
 
-    // todo: must have all ships exactly once
+    @Test
+    public void cannotBuildGameGridWithoutAllShipsOnStagingGrid() {
+        StagingGrid grid = new StagingGrid();
+        grid.addShip( Ship.CARRIER, Coordinate.of( Row.of( 'A' ), Column.of( 1 ) ), Direction.RIGHT ); // A1/A2/A3/A4/A5
+        grid.addShip( Ship.BATTLESHIP, Coordinate.of( Row.of( 'B' ), Column.of( 1 ) ), Direction.RIGHT ); // B1/B2/B3/B4
+        grid.addShip( Ship.CRUISER, Coordinate.of( Row.of( 'C' ), Column.of( 1 ) ), Direction.RIGHT ); // C1/C2/C3
+        grid.addShip( Ship.SUBMARINE, Coordinate.of( Row.of( 'D' ), Column.of( 1 ) ), Direction.RIGHT ); // D1/D2/D3
+
+        assertThatThrownBy( grid::buildGameGrid )
+            .isInstanceOf( MissingShipException.class );
+    }
+
+    @Test
+    public void canBuildGameGridWithAllShipsOnStagingGrid() {
+        START HERE
+    }
 }

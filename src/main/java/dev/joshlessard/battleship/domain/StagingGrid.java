@@ -61,4 +61,8 @@ class StagingGrid {
         Set<Coordinate> coordinates = shipCoordinates.remove( ship );
         occupiedCoordinates.removeAll( coordinates );
     }
+
+    public void buildGameGrid() {
+        throw new MissingShipException();
+    }
 }
