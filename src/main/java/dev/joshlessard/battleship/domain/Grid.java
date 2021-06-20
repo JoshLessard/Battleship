@@ -11,10 +11,17 @@ class Grid {
     private final Set<Coordinate> occupiedCoordinates = new HashSet<>();
 
     void addShip( Ship ship, Coordinate topLeft, Direction direction ) {
+        ensureShipNotAlreadyOnGrid( ship );
         Set<Coordinate> coordinates = coordinatesToBeOccupied( topLeft, direction, ship.length() );
         ensureNoneAlreadyOccupied( coordinates );
         shipCoordinates.put( ship, coordinates );
         occupiedCoordinates.addAll( coordinates );
+    }
+
+    private void ensureShipNotAlreadyOnGrid( Ship ship ) {
+        if ( shipCoordinates.containsKey( ship ) ) {
+            throw new DuplicateShipException();
+        }
     }
 
     private Set<Coordinate> coordinatesToBeOccupied( Coordinate topLeft, Direction direction, int length ) {
