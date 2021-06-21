@@ -31,4 +31,8 @@ public class GameGridTest {
         assertThat( gameGrid.shoot( Coordinate.of( Row.of( 'J' ), Column.of( 8 ) ) ) )
             .isEqualTo( ShotResult.miss() );
     }
+
+    // todo: sink a ship
+    // todo: sink all ships
+    // todo: prevent same hit shot?
 }
