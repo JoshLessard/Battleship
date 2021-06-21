@@ -65,7 +65,7 @@ class StagingGrid {
 
     GameGrid buildGameGrid() {
         ensureAllShipsOnGrid();
-        return new GameGrid();
+        return new GameGrid( shipCoordinates );
     }
 
     private void ensureAllShipsOnGrid() {
