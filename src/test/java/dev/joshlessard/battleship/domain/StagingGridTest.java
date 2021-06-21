@@ -2,6 +2,7 @@ package dev.joshlessard.battleship.domain;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StagingGridTest {
@@ -128,6 +129,14 @@ public class StagingGridTest {
 
     @Test
     public void canBuildGameGridWithAllShipsOnStagingGrid() {
-        START HERE
+        StagingGrid grid = new StagingGrid();
+        grid.addShip( Ship.CARRIER, Coordinate.of( Row.of( 'A' ), Column.of( 1 ) ), Direction.DOWN ); // A1/B1/C1/D1/E1
+        grid.addShip( Ship.BATTLESHIP, Coordinate.of( Row.of( 'A' ), Column.of( 2 ) ), Direction.DOWN ); // A2/B2/C2/D2
+        grid.addShip( Ship.CRUISER, Coordinate.of( Row.of( 'A' ), Column.of( 3 ) ), Direction.DOWN ); // A3/B3/C3/D3
+        grid.addShip( Ship.SUBMARINE, Coordinate.of( Row.of( 'A' ), Column.of( 4 ) ), Direction.DOWN ); // A4/B4/C4/D4
+        grid.addShip( Ship.DESTROYER, Coordinate.of( Row.of( 'A' ), Column.of( 5 ) ), Direction.DOWN ); // A5/B5
+
+        assertThat( grid.buildGameGrid() )
+            .isNotNull();
     }
 }

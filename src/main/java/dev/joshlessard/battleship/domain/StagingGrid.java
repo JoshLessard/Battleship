@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Stream;
 
 class StagingGrid {
 
@@ -62,7 +63,16 @@ class StagingGrid {
         occupiedCoordinates.removeAll( coordinates );
     }
 
-    public void buildGameGrid() {
-        throw new MissingShipException();
+    GameGrid buildGameGrid() {
+        ensureAllShipsOnGrid();
+        return new GameGrid();
+    }
+
+    private void ensureAllShipsOnGrid() {
+        for ( Ship ship : Ship.values() ) {
+            if ( ! shipCoordinates.containsKey( ship ) ) {
+                throw new MissingShipException();
+            }
+        }
     }
 }
