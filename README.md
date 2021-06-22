@@ -1,5 +1,5 @@
 # Battleship
-An implementation of the class Milton Bradley Battleship board game.
+An implementation of the classic Milton Bradley Battleship board game.
 
 # Ships
 * Carrier: five (5) holes
