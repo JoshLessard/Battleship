@@ -8,6 +8,7 @@ class ShotResult {
 
     enum Result {
         HIT,
+        SUNK,
         MISS;
     }
 
@@ -16,6 +17,10 @@ class ShotResult {
 
     static ShotResult hit( Ship ship ) {
         return new ShotResult( Result.HIT, ship );
+    }
+
+    static ShotResult sunk( Ship ship ) {
+        return new ShotResult( Result.SUNK, ship );
     }
 
     static ShotResult miss() {
