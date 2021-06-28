@@ -2,29 +2,10 @@ package dev.joshlessard.battleship.domain;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 class StagingGame {
 
     private final Map<PlayerId, StagingGrid> stagingGridsByPlayerId = new HashMap<>();
-
-    StagingGame( PlayerId playerId ) {
-        this.stagingGridsByPlayerId.put( playerId, new StagingGrid() );
-    }
-
-    void addShip( PlayerId playerId, Ship ship, Coordinate topLeft, Direction direction ) {
-        if ( ! stagingGridsByPlayerId.containsKey( playerId ) ) {
-            throw new UnknownPlayerException();
-        }
-        stagingGridsByPlayerId.get( playerId )
-            .addShip( ship, topLeft, direction );
-    }
-
-    // todo Should we return a copy?
-    StagingGrid stagingGrid( PlayerId player1Id ) {
-        return Optional.ofNullable( stagingGridsByPlayerId.get( player1Id ) )
-            .orElseThrow( UnknownPlayerException::new );
-    }
 
     void addPlayer( PlayerId playerId ) {
         ensurePlayerIsNew( playerId );
@@ -42,5 +23,34 @@ class StagingGame {
         if ( stagingGridsByPlayerId.size() == 2 ) {
             throw new TooManyPlayersException();
         }
+    }
+
+    void addShip( PlayerId playerId, Ship ship, Coordinate topLeft, Direction direction ) {
+        ensureKnownPlayer( playerId );
+        stagingGridsByPlayerId.get( playerId )
+            .addShip( ship, topLeft, direction );
+    }
+
+    private void ensureKnownPlayer( PlayerId playerId ) {
+        if ( ! stagingGridsByPlayerId.containsKey(playerId) ) {
+            throw new UnknownPlayerException();
+        }
+    }
+
+    // todo Should we return a copy?
+    StagingGrid stagingGrid( PlayerId playerId ) {
+        ensureKnownPlayer( playerId );
+        return stagingGridsByPlayerId.get( playerId );
+    }
+
+    void removePlayer( PlayerId playerId ) {
+        stagingGridsByPlayerId.remove( playerId );
+    }
+
+    void buildGame() {
+        if ( stagingGridsByPlayerId.size() < 2 ) {
+            throw new TooFewPlayersException();
+        }
+        throw new GameNotReadyException();
     }
 }
