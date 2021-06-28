@@ -102,7 +102,14 @@ public class StagingGameTest {
             .isEqualTo( expectedPlayer1StagingGrid );
     }
 
-    // todo Can't remove unknown player
+    @Test
+    public void cannotRemoveUnknownPlayer() {
+        PlayerId player1Id = PlayerId.of( 978432423L );
+        StagingGame stagingGame = new StagingGame();
+
+        assertThatThrownBy( () -> stagingGame.removePlayer( player1Id ) )
+            .isInstanceOf( UnknownPlayerException.class );
+    }
 
     @Test
     public void player3CanJoinIfAnotherPlayerLeaves() {

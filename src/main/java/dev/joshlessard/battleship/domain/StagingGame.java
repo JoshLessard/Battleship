@@ -8,43 +8,44 @@ class StagingGame {
     private final Map<PlayerId, StagingGrid> stagingGridsByPlayerId = new HashMap<>();
 
     void addPlayer( PlayerId playerId ) {
-        ensurePlayerIsNew( playerId );
+        ensurePlayerIsUnique( playerId );
         ensureRoomForAnotherPlayer();
         stagingGridsByPlayerId.put( playerId, new StagingGrid() );
     }
 
-    private void ensurePlayerIsNew( PlayerId playerId ) {
+    private void ensurePlayerIsUnique( PlayerId playerId ) {
         if ( stagingGridsByPlayerId.containsKey( playerId ) ) {
             throw new DuplicatePlayerException();
         }
     }
 
     private void ensureRoomForAnotherPlayer() {
-        if ( stagingGridsByPlayerId.size() == 2 ) {
+        if ( stagingGridsByPlayerId.size() >= 2 ) {
             throw new TooManyPlayersException();
         }
     }
 
-    void addShip( PlayerId playerId, Ship ship, Coordinate topLeft, Direction direction ) {
-        ensureKnownPlayer( playerId );
-        stagingGridsByPlayerId.get( playerId )
-            .addShip( ship, topLeft, direction );
+    void removePlayer( PlayerId playerId ) {
+        ensurePlayerIsKnown( playerId );
+        stagingGridsByPlayerId.remove( playerId );
     }
 
-    private void ensureKnownPlayer( PlayerId playerId ) {
+    private void ensurePlayerIsKnown( PlayerId playerId ) {
         if ( ! stagingGridsByPlayerId.containsKey(playerId) ) {
             throw new UnknownPlayerException();
         }
     }
 
-    // todo Should we return a copy?
-    StagingGrid stagingGrid( PlayerId playerId ) {
-        ensureKnownPlayer( playerId );
-        return stagingGridsByPlayerId.get( playerId );
+    void addShip( PlayerId playerId, Ship ship, Coordinate topLeft, Direction direction ) {
+        ensurePlayerIsKnown( playerId );
+        stagingGridsByPlayerId.get( playerId )
+            .addShip( ship, topLeft, direction );
     }
 
-    void removePlayer( PlayerId playerId ) {
-        stagingGridsByPlayerId.remove( playerId );
+    // todo Should we return a copy?
+    StagingGrid stagingGrid( PlayerId playerId ) {
+        ensurePlayerIsKnown( playerId );
+        return stagingGridsByPlayerId.get( playerId );
     }
 
     void buildGame() {
