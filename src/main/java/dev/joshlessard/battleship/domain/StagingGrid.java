@@ -3,6 +3,7 @@ package dev.joshlessard.battleship.domain;
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 class StagingGrid {
@@ -73,5 +74,18 @@ class StagingGrid {
                 throw new MissingShipException();
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof StagingGrid)) return false;
+        StagingGrid that = (StagingGrid) o;
+        return Objects.equals(shipCoordinates, that.shipCoordinates) && Objects.equals(occupiedCoordinates, that.occupiedCoordinates);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(shipCoordinates, occupiedCoordinates);
     }
 }
