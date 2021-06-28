@@ -182,4 +182,6 @@ public class StagingGameTest {
         assertThatThrownBy( stagingGame::buildGame )
             .isInstanceOf( GameNotReadyException.class );
     }
+
+    MAKE SURE PROPER GAME CAN BE BUILT
 }
