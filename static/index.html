@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Josh's Battleship</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="nav-bar"></div>
+      <div id="main">
+        <h1>Welcome to Battleship!</h1>
+      </div>
+      <div>
+        <login-form></login-form>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+    <script src="./components/LoginForm.js"></script>
+    <script>
+      const mountedApp = app.mount('#app')
+    </script>
+  </body>
+</html>
