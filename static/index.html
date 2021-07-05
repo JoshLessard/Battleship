@@ -8,12 +8,15 @@
   </head>
   <body>
     <div id="app">
-      <div class="nav-bar"></div>
+      <div class="nav-bar">
+        <div v-show="loggedIn">{{ name }}</div>
+        <div v-show="loggedIn">{{ email }}</div>
+      </div>
       <div id="main">
         <h1>Welcome to Battleship!</h1>
-      </div>
-      <div>
-        <login-form></login-form>
+        <div v-show="! loggedIn">
+          <login-form v-on:login-attempt="loginAttempt"></login-form>
+        </div>
       </div>
     </div>
     <script src="./main.js"></script>

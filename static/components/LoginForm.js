@@ -1,4 +1,5 @@
 app.component('login-form', {
+    emits: ["login-attempt"],
     template:
     /*html*/
     `
@@ -15,7 +16,7 @@ app.component('login-form', {
         class="button"
         type="submit"
         value="Log in"
-        v-on:click.prevent="! allFieldsFilled"
+        v-bind:disabled="! allFieldsFilled"
         v-bind:class="{ disabledButton: ! allFieldsFilled }"
       >
     </form>
