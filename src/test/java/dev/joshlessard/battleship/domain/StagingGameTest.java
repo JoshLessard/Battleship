@@ -183,5 +183,5 @@ public class StagingGameTest {
             .isInstanceOf( GameNotReadyException.class );
     }
 
-    MAKE SURE PROPER GAME CAN BE BUILT
+    // todo: Make sure proper game can be built
 }
