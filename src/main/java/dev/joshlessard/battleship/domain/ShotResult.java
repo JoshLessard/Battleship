@@ -4,7 +4,7 @@ import java.util.Objects;
 
 class ShotResult {
 
-    private static final ShotResult MISS = new ShotResult( Result.MISS, null );
+    private static final ShotResult MISS_RESULT = new ShotResult( Result.MISS, null );
 
     enum Result {
         HIT,
@@ -24,7 +24,7 @@ class ShotResult {
     }
 
     static ShotResult miss() {
-        return MISS;
+        return MISS_RESULT;
     }
 
     private ShotResult( Result result, Ship ship ) {
