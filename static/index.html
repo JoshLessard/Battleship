@@ -6,18 +6,30 @@
     <link rel="stylesheet" href="./assets/styles.css" />
     <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
     <script src="./main.js"></script>
-    <script src="./components/LoginForm.js"></script>
   </head>
   <body>
     <div id="app">
       <div class="nav-bar">
-        <div v-show="loggedIn">{{ name }}</div>
-        <div v-show="loggedIn">{{ email }}</div>
+        <div v-show="loggedIn">{{ userId }}</div>
       </div>
       <div id="main">
         <h1>Welcome to Battleship!</h1>
-        <div v-show="! loggedIn">
-          <login-form v-on:login-attempt="loginAttempt"></login-form>
+        <div id="loginForm" v-show="! loggedIn">
+          <form v-on:submit.prevent="onLogin">
+            <label for="userId">User ID:</label>
+            <input id="userId">
+            <input type="submit" value="Log In">
+          </form>
+        </div>
+        <div id="loggedIn" v-show="loggedIn">
+          <div id="noStagingGame" v-show="stagingGame === null">
+            <form v-on:submit.prevent="onNewGame">
+              <input type="submit" value="New Game">
+            </form>
+          </div>
+          <div id="stagingGame" v-show="stagingGame !== null">
+            <p>Here's a game!</p>
+          </div>
         </div>
       </div>
     </div>

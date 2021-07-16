@@ -1,19 +1,29 @@
 const app = Vue.createApp({
     data: function() {
         return {
-            name: '',
-            email: ''
+            userId: null,
+            stagingGame: null
         }
     },
     methods: {
-        loginAttempt: function( userProfile ) {
-            this.name = userProfile.name
-            this.email = userProfile.email
+        onLogin: function( submitEvent ) {
+            this.userId = submitEvent.target.elements.userId.value
+            submitEvent.target.elements.userId.value = null
+        },
+        onNewGame: function() {
+            const requestOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify( { userId: this.userId } )
+            }
+            fetch( 'http://localhost:8080/stagingGame' )
+                .then( response => response.json() )
+                .then( data => alert( data ) )
         }
     },
     computed: {
         loggedIn: function() {
-            return this.name !== '' && this.email !== ''
+            return this.userId !== null
         }
     }
 })
