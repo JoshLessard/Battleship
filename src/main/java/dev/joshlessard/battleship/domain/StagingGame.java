@@ -19,6 +19,7 @@ class StagingGame {
         }
     }
 
+    // todo: race condition if two "second players" try to join at the same time
     private void ensureRoomForAnotherPlayer() {
         if ( stagingGridsByPlayerId.size() >= 2 ) {
             throw new TooManyPlayersException();
@@ -34,6 +35,10 @@ class StagingGame {
         if ( ! stagingGridsByPlayerId.containsKey(playerId) ) {
             throw new UnknownPlayerException();
         }
+    }
+
+    public boolean containsPlayer( PlayerId playerId ) {
+        return stagingGridsByPlayerId.containsKey( playerId );
     }
 
     void addShip( PlayerId playerId, Ship ship, Coordinate topLeft, Direction direction ) {

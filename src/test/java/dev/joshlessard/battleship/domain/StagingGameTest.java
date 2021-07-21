@@ -44,6 +44,45 @@ public class StagingGameTest {
     }
 
     @Test
+    public void emptyStagingGameDoesNotContainAnyPlayers() {
+        PlayerId player1Id = PlayerId.of( 98832423L );
+        PlayerId player2Id = PlayerId.of( 88342923342L );
+        StagingGame stagingGame = new StagingGame();
+
+        assertThat( stagingGame.containsPlayer( player1Id ) )
+            .isFalse();
+        assertThat( stagingGame.containsPlayer( player2Id ) )
+            .isFalse();
+    }
+
+    @Test
+    public void stagingGameWithOnePlayerContainsOnlyThatPlayer() {
+        PlayerId player1Id = PlayerId.of( 2389432L );
+        PlayerId player2Id = PlayerId.of( 1223490902L );
+        StagingGame stagingGame = new StagingGame();
+        stagingGame.addPlayer( player1Id );
+
+        assertThat( stagingGame.containsPlayer( player1Id ) )
+            .isTrue();
+        assertThat( stagingGame.containsPlayer( player2Id ) )
+            .isFalse();
+    }
+
+    @Test
+    public void stagingGameWithTwoPlayersContainsBothPlayers() {
+        PlayerId player1Id = PlayerId.of( 38432987432L );
+        PlayerId player2Id = PlayerId.of( 289832432L );
+        StagingGame stagingGame = new StagingGame();
+        stagingGame.addPlayer( player1Id );
+        stagingGame.addPlayer( player2Id );
+
+        assertThat( stagingGame.containsPlayer( player1Id ) )
+            .isTrue();
+        assertThat( stagingGame.containsPlayer( player2Id ) )
+            .isTrue();
+    }
+
+    @Test
     public void player2MustBeAddedToStagingGameBeforeCheckingStagingGrid() {
         PlayerId player1Id = PlayerId.of( 439278432L );
         PlayerId player2Id = PlayerId.of( 19238923432342L );
