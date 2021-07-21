@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping( "battleship/api/stagingGame" )
-public class StagingGameController {
+@RequestMapping( "battleship/api/gameLobby" )
+public class GameLobbyController {
 
     @PostMapping
-    public void newStagingGame( @RequestBody NewStagingGameRequest request ) {
+    public void newGameLobby( @RequestBody NewGameLobbyRequest request ) {
     }
 }

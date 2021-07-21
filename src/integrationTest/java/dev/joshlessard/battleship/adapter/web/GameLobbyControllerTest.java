@@ -14,15 +14,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Tag( "integration" )
 @SpringBootTest
 @AutoConfigureMockMvc
-public class StagingGameControllerTest {
+public class GameLobbyControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void newStagingGameWithUserIdReturnsHttp200() throws Exception {
+    public void newGameLobbyWithUserIdReturnsHttp200() throws Exception {
         mockMvc.perform(
-            post( "/battleship/api/stagingGame" )
+            post( "/battleship/api/gameLobby" )
                 .content( "{ \"userId\": 432 }" )
                 .contentType( MediaType.APPLICATION_JSON )
         )
