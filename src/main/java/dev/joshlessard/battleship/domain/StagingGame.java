@@ -5,7 +5,17 @@ import java.util.Map;
 
 class StagingGame {
 
+    private StagingGameId id;
     private final Map<PlayerId, StagingGrid> stagingGridsByPlayerId = new HashMap<>();
+
+    StagingGameId id() {
+        return id;
+    }
+
+    // todo Should I hide this and have tests set via reflection?
+    void setId( StagingGameId id ) {
+        this.id = id;
+    }
 
     void addPlayer( PlayerId playerId ) {
         ensurePlayerIsUnique( playerId );
