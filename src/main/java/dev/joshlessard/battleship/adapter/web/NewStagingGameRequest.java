@@ -1,6 +1,6 @@
 package dev.joshlessard.battleship.adapter.web;
 
-public class NewGameLobbyRequest {
+public class NewStagingGameRequest {
 
     private long userId;
 
