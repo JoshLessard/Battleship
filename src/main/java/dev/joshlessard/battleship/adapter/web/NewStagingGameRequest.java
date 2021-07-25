@@ -2,9 +2,9 @@ package dev.joshlessard.battleship.adapter.web;
 
 public class NewStagingGameRequest {
 
-    private long userId;
+    private long playerId;
 
-    public long getUserId() {
-        return userId;
+    public long getPlayerId() {
+        return playerId;
     }
 }
