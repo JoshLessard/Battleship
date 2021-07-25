@@ -6,7 +6,7 @@ public class StagingGameId {
 
     private final long id;
 
-    static StagingGameId of( long id ) {
+    public static StagingGameId of( long id ) {
         return new StagingGameId( id );
     }
 

@@ -6,7 +6,9 @@ import java.util.Map;
 
 import dev.joshlessard.battleship.domain.StagingGame;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
+@Getter
 @EqualsAndHashCode
 class StagingGameView {
 

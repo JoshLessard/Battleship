@@ -1,6 +1,6 @@
 package dev.joshlessard.battleship.domain;
 
-interface StagingGameRepository {
+public interface StagingGameRepository {
 
     void save( StagingGame stagingGame );
 }

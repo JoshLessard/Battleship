@@ -13,7 +13,7 @@ public class StagingGame {
     }
 
     // todo Should I hide this and have tests set via reflection?
-    void setId( StagingGameId id ) {
+    public void setId( StagingGameId id ) {
         this.id = id;
     }
 
