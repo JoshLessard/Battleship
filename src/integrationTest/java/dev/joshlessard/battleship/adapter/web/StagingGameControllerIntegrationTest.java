@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Tag( "integration" )
 @SpringBootTest
 @AutoConfigureMockMvc
-public class StagingGameControllerTest {
+public class StagingGameControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
