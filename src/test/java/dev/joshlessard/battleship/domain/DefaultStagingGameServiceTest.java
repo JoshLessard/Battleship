@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class StagingGameServiceTest {
+public class DefaultStagingGameServiceTest {
 
     @Test
     public void newStagingGameAddsNewStagingGameWithGivenPlayerIdToRepository() {
         TestStagingGameRepository repository = new TestStagingGameRepository();
-        StagingGameService service = new StagingGameService( repository );
+        DefaultStagingGameService service = new DefaultStagingGameService( repository );
         PlayerId playerId = PlayerId.of( 812341L );
 
         StagingGame stagingGame = service.newStagingGame( playerId );

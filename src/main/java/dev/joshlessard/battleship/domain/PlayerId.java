@@ -2,11 +2,11 @@ package dev.joshlessard.battleship.domain;
 
 import java.util.Objects;
 
-class PlayerId {
+public class PlayerId {
 
     private final long id;
 
-    static PlayerId of( long id ) {
+    public static PlayerId of( long id ) {
         return new PlayerId( id );
     }
 

@@ -5,11 +5,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.joshlessard.battleship.domain.PlayerId;
+import dev.joshlessard.battleship.domain.StagingGame;
+import dev.joshlessard.battleship.domain.StagingGameService;
+
 @RestController
 @RequestMapping( "battleship/api/stagingGame" )
 public class StagingGameController {
 
+    private final StagingGameService stagingGameService;
+
+    public StagingGameController( StagingGameService stagingGameService ) {
+        this.stagingGameService = stagingGameService;
+    }
+
     @PostMapping
-    public void newStagingGame( @RequestBody NewStagingGameRequest request ) {
+    public StagingGameView newStagingGame( @RequestBody NewStagingGameRequest request ) {
+        StagingGame stagingGame = stagingGameService.newStagingGame( PlayerId.of( request.getPlayerId() ) );
+        return StagingGameView.of( stagingGame );
     }
 }

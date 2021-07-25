@@ -2,7 +2,7 @@ package dev.joshlessard.battleship.domain;
 
 import java.util.Objects;
 
-class StagingGameId {
+public class StagingGameId {
 
     private final long id;
 
@@ -18,6 +18,10 @@ class StagingGameId {
         if ( id < 1L ) {
             throw new IllegalArgumentException();
         }
+        return id;
+    }
+
+    public long asLong() {
         return id;
     }
 

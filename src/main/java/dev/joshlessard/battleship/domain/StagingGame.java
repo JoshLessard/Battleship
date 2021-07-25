@@ -3,12 +3,12 @@ package dev.joshlessard.battleship.domain;
 import java.util.HashMap;
 import java.util.Map;
 
-class StagingGame {
+public class StagingGame {
 
     private StagingGameId id;
     private final Map<PlayerId, StagingGrid> stagingGridsByPlayerId = new HashMap<>();
 
-    StagingGameId id() {
+    public StagingGameId id() {
         return id;
     }
 
