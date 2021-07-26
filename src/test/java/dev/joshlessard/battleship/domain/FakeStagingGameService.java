@@ -2,11 +2,11 @@ package dev.joshlessard.battleship.domain;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-public class TestStagingGameService implements StagingGameService {
+public class FakeStagingGameService implements StagingGameService {
 
     private final AtomicLong gameIdGenerator;
 
-    public TestStagingGameService( long nextGameId ) {
+    public FakeStagingGameService( long nextGameId ) {
         this.gameIdGenerator = new AtomicLong( nextGameId );
     }
 
